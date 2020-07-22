@@ -5,12 +5,16 @@ import { NavLink } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
+import { useDispatch } from "react-redux";
+import { logOut } from "../../store/user/actions";
 
 export default function Navigation() {
+  const dispatch = useDispatch();
+
   return (
     <Navbar bg="primary" variant="dark" expand="lg">
       <Navbar.Brand as={NavLink} to="/">
-        YOUR PROJECT NAME
+        PROJECT NAME
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
@@ -38,7 +42,7 @@ export default function Navigation() {
             </Nav.Link>
           </Nav.Item>
 
-          <Button>Logout</Button>
+          <Button onClick={() => dispatch(logOut())}>Logout</Button>
           <Form inline>
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
             <Button variant="outline-info">Search</Button>
