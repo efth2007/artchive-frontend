@@ -1,24 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import "./App.css";
+import { Switch, Route } from "react-router-dom";
+import Navigation from "./components/Navigation";
+import Loading from "./components/Loading";
+import MessageBox from "./components/MessageBox";
+import SignUp from "./pages/SignUp";
+import Login from "./pages/Login";
+import Artists from "./pages/Artists";
+import ArtistDetails from "./pages/ArtistDetails";
+
+import { useDispatch, useSelector } from "react-redux";
+import { appLoading } from "./store/appState/selectors";
+import { selectAppLoading } from "./store/appState/selectors";
+import { getUserWithStoredToken } from "./store/user/actions";
+
+const Home = () => <h1>Home</h1>;
 
 function App() {
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectAppLoading);
+
+  useEffect(() => {
+    dispatch(getUserWithStoredToken());
+  }, [dispatch]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navigation />
+      <MessageBox />
+      <Switch>
+        {isLoading ? <Loading /> : null}
+        <Route exact path="/" component={Home} />
+        <Route exact path="/artists" component={Artists} />
+        <Route path="/signup" component={SignUp} />
+        <Route path="/login" component={Login} />
+        <Route path="/artists/:id" component={ArtistDetails} />
+      </Switch>
     </div>
   );
 }
