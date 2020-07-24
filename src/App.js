@@ -6,6 +6,7 @@ import Loading from "./components/Loading";
 import MessageBox from "./components/MessageBox";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
+import Artists from "./pages/Artists";
 
 import { useDispatch, useSelector } from "react-redux";
 import { appLoading } from "./store/appState/selectors";
@@ -13,7 +14,7 @@ import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
 
 const Home = () => <h1>Home</h1>;
-const Other = () => <h1>Other</h1>;
+const ArtistsA = () => <h1>Artists</h1>;
 
 function App() {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ function App() {
       <Switch>
         {isLoading ? <Loading /> : null}
         <Route exact path="/" component={Home} />
-        <Route path="/other" component={Other} />
+        <Route path="/artists" component={Artists} />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
       </Switch>
