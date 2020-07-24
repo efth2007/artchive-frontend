@@ -24,6 +24,7 @@ export default function Artists() {
           return (
             <Artist
               key={a.id}
+              id={a.id}
               knownAs={a.knownAs}
               firstName={a.firstName}
               lastName={a.lastName}
