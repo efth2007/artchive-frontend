@@ -12,8 +12,8 @@ export const fetchArtists = () => {
   return async (dispatch, getState) => {
     const artistsCount = getState().artists.length;
     const response = await axios.get(
-      `${apiUrl}/artists?limit=${DEFAULT_PAGINATION_LIMIT}&offset=${artistsCount}`
-      // `${apiUrl}/artists`
+      // `${apiUrl}/artists?limit=${DEFAULT_PAGINATION_LIMIT}&offset=${artistsCount}`
+      `${apiUrl}/artists`
     );
 
     console.log("Your artists:", response.data);

@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { fetchArtistById } from "../../store/artistDetails/actions";
 import { selectArtistDetails } from "../../store/artistDetails/selectors";
 import ArtistDetailsCard from "../../components/ArtistDetailsCard";
+import Artwork from "../../components/Artwork";
 
 export default function ArtistDetails() {
   const { id } = useParams();
@@ -30,6 +31,20 @@ export default function ArtistDetails() {
         wikiUrl={artist.wikiUrl}
         tags={artist.tags}
       />
+      {!artist.artworks ? null : (
+        <div class="card-columns">
+          {" "}
+          {artist.artworks.map((aw) => (
+            <Artwork
+              key={aw.id}
+              title={aw.title}
+              date={aw.date}
+              imageUrl={aw.imageUrl}
+              description={aw.description}
+            />
+          ))}{" "}
+        </div>
+      )}
     </div>
   );
 }
