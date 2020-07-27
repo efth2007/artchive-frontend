@@ -8,6 +8,8 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Artists from "./pages/Artists";
 import ArtistDetails from "./pages/ArtistDetails";
+import Museums from "./pages/Museums";
+import MuseumDetails from "./pages/MuseumDetails";
 
 import { useDispatch, useSelector } from "react-redux";
 import { appLoading } from "./store/appState/selectors";
@@ -35,6 +37,8 @@ function App() {
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
         <Route path="/artists/:id" component={ArtistDetails} />
+        <Route exact path="/museums" component={Museums} />
+        <Route path="/museums/:id" component={MuseumDetails} />
       </Switch>
     </div>
   );
