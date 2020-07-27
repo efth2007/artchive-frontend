@@ -16,6 +16,26 @@ export default function Artists() {
   const alphabetically = () => set_displayed("alphabetically");
   const chronologically = () => set_displayed("chronologically");
 
+  console.log("Are artists here already?", artists);
+  const artistsStoredChronologically = [...artists].sort(
+    (a, b) => a.bornOn - b.bornOn
+  );
+
+  const artistsStoredAlphabetically = [...artists].sort((a, b) =>
+    a.lastName.localeCompare(b.lastName)
+  );
+
+  const displayedArtists =
+    displayed === "alphabetically"
+      ? artistsStoredAlphabetically
+      : displayed === "chronologically"
+      ? artistsStoredChronologically
+      : null;
+
+  //displayedArtists ?
+  console.log(`Artists sorted ${displayed}, (i hope)......:`, displayedArtists);
+  //   : console.log("ONE MOMENT PLEASE");
+
   useEffect(() => {
     dispatch(fetchArtists());
   }, [dispatch]);
@@ -29,7 +49,7 @@ export default function Artists() {
         <Button onClick={chronologically}>Chronologically</Button>
       </Jumbotron>
       <Container>
-        {artists.map((a) => {
+        {displayedArtists.map((a) => {
           return (
             <Artist
               key={a.id}
