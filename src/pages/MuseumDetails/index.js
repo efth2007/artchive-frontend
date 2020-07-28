@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchMuseumById } from "../../store/museumDetails/actions";
 import { selectMuseumDetails } from "../../store/museumDetails/selectors";
+import { Map } from "../../components/Map";
+
 //import ArtistDetailsCard from "../../components/ArtistDetailsCard";
 //import Artwork from "../../components/Artwork";
 
@@ -16,35 +18,36 @@ export default function MuseumDetails() {
 
   const museum = useSelector(selectMuseumDetails).museum;
   console.log("Museum??", museum);
+
+  const location = {
+    address: museum.name,
+    lat: museum.latitude,
+    lng: museum.longitude,
+  };
+
+  const zoomLevel = 15;
+
+  const location2 = {
+    lat: 52.359997,
+    lng: 4.885219,
+    address: "blaaaa",
+  };
+
+  console.log(
+    `location of ${museum.name}: ${museum.latitude}, ${museum.longitude}`
+  );
+
   return (
     <div>
       <h2>Museum details number {id} </h2>
 
-      {/*     
-    
-      <ArtistDetailsCard
-        key={artist.id}
-       
-        placeOfDeath={artist.placeOfDeath}
-        wikiUrl={artist.wikiUrl}
-        tags={artist.tags}
-      />
- */}
+      <h1>{museum.name}</h1>
 
-      {/* {!artist.artworks ? null : (
-        <div class="card-columns">
-          {" "}
-          {artist.artworks.map((aw) => (
-            <Artwork
-              key={aw.id}
-              title={aw.title}
-              date={aw.date}
-              imageUrl={aw.imageUrl}
-              description={aw.description}
-            />
-          ))}{" "}
-        </div>
-      )} */}
+      {location.lat === undefined || location.lat === null ? (
+        <h1>WAIT!!</h1>
+      ) : (
+        <Map location={location2} zoomLevel={15} />
+      )}
     </div>
   );
 }
