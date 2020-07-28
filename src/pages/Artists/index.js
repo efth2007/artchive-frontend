@@ -13,27 +13,14 @@ export default function Artists() {
 
   const [sorting, set_sorting] = useState("chronologically");
   const [filter, set_filter] = useState("");
-  const [displayedArtists, set_displayedArtists] = useState(artists);
-
-  const artistsSortedChronologically = [...artists].sort(
-    (a, b) => a.bornOn - b.bornOn
-  );
-
-  const artistsSortedAlphabetically = [...artists].sort((a, b) =>
-    a.lastName.localeCompare(b.lastName)
-  );
-
-  const sortedArtists =
-    sorting === "alphabetically"
-      ? artistsSortedAlphabetically
-      : artistsSortedChronologically;
+  const [displayedArtists, set_displayedArtists] = useState(artists); //[]
 
   const filterByCountry = (e) => {
     set_filter(e.target.value);
     if (e.target.value === "All") {
-      set_displayedArtists(sortedArtists);
+      set_displayedArtists(artists);
     } else {
-      const artistsByCountry = sortedArtists.filter(
+      const artistsByCountry = artists.filter(
         (artist) => artist.nationality === e.target.value
       );
       set_displayedArtists(artistsByCountry);
@@ -45,8 +32,25 @@ export default function Artists() {
 
   useEffect(() => {
     dispatch(fetchArtists());
-    set_displayedArtists();
+    // set_displayedArtists();s
   }, [dispatch]);
+
+  useEffect(() => {
+    set_displayedArtists(artists);
+  }, [artists]);
+
+  const artistsSortedChronologically = [...displayedArtists].sort(
+    (a, b) => a.bornOn - b.bornOn
+  );
+
+  const artistsSortedAlphabetically = [...displayedArtists].sort((a, b) =>
+    a.lastName.localeCompare(b.lastName)
+  );
+
+  const sortedArtists =
+    sorting === "alphabetically"
+      ? artistsSortedAlphabetically
+      : artistsSortedChronologically;
 
   const changeSorting = (e) => set_sorting(e.target.value);
   // set_displayedArtists(sortedArtists);
@@ -60,8 +64,8 @@ export default function Artists() {
         <Button onClick={chronologically}>Chronologically</Button> */}
         <label>Sort:</label>
         <select onChange={changeSorting}>
-          <option value="alphabetically">Alphabetically</option>
           <option value="chronologically">Chronologically</option>
+          <option value="alphabetically">Alphabetically</option>
         </select>
         <br />
         <label>Country:</label>
@@ -80,9 +84,9 @@ export default function Artists() {
         </select>
       </Jumbotron>
       <Container>
-        {!displayedArtists
+        {!sortedArtists
           ? null
-          : displayedArtists.map((a) => {
+          : sortedArtists.map((a) => {
               return (
                 <Artist
                   key={a.id}

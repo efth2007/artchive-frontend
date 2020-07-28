@@ -4,13 +4,8 @@ import { useParams } from "react-router-dom";
 import { fetchMuseumById } from "../../store/museumDetails/actions";
 import { selectMuseumDetails } from "../../store/museumDetails/selectors";
 import { Map } from "../../components/Map";
-import GoogleMapReact from "google-map-react";
+//import GoogleMapReact from "google-map-react";
 import Artwork from "../../components/Artwork";
-
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
-
-//import ArtistDetailsCard from "../../components/ArtistDetailsCard";
-//import Artwork from "../../components/Artwork";
 
 export default function MuseumDetails() {
   const { id } = useParams();
@@ -21,34 +16,35 @@ export default function MuseumDetails() {
   }, [dispatch, id]);
 
   const museum = useSelector(selectMuseumDetails).museum;
+
   console.log("Museum??", museum);
 
-  const location = {
-    address: museum.name,
-    lat: museum.latitude,
-    lng: museum.longitude,
-  };
+  // const location = {
+  //   address: museum.name,
+  //   lat: parseFloat(museum.latitude),
+  //   lng: parseFloat(museum.longitude),
+  // };
 
-  const zoomLevel = 15;
+  // const zoomLevel = 15;
 
-  const location2 = {
-    lat: 52.359997,
-    lng: 4.885219,
-    address: "BLA",
-  };
+  // const location2 = {
+  //   lat: 52.359997,
+  //   lng: 4.885219,
+  //   address: "BLA",
+  // };
 
   console.log(
     `location of ${museum.name}: ${museum.latitude}, ${museum.longitude}`
   );
 
   //////////
-  const defaultProps = {
-    center: {
-      lat: museum.latitude,
-      lng: museum.longitude,
-    },
-    zoom: 11,
-  };
+  // const defaultProps = {
+  //   center: {
+  //     lat: museum.latitude,
+  //     lng: museum.longitude,
+  //   },
+  //   zoom: 11,
+  // };
 
   /////////////
 
@@ -57,24 +53,22 @@ export default function MuseumDetails() {
       <h2>Museum details number {id} </h2>
 
       <h1>{museum.name}</h1>
-      {/* 
-      {location.lat === undefined || location.lat === null ? (
+
+      {!museum.name ? (
         <h1>WAIT!!</h1>
-      ) : ( 
+      ) : (
+        <Map
+          location={{
+            address: museum.name,
+            lat: parseFloat(museum.latitude),
+            lng: parseFloat(museum.longitude),
+          }}
+          zoomLevel={15}
+        />
+      )}
 
-      
-      <Map
-        location={{
-          address: museum.name,
-          lat: museum.latitude,
-          lng: museum.longitude,
-        }}
-        zoomLevel={15}
-      />
-       )} */}
-
-      <div style={{ height: "100vh", width: "100%" }}>
-        <GoogleMapReact
+      {/* <div style={{ height: "100vh", width: "100%" }}> */}
+      {/* <GoogleMapReact
           bootstrapURLKeys={{ key: "AIzaSyCq7OIj4xIJv_2CFRJkcfA38sIaFep0LUQ" }}
           defaultCenter={defaultProps.center}
           defaultZoom={defaultProps.zoom}
@@ -84,7 +78,9 @@ export default function MuseumDetails() {
             lng={museum.longitude}
             text="My Marker"
           />
-        </GoogleMapReact>
+        </GoogleMapReact> */}
+
+      <div>
         <h2>Some artworks you can see at {museum.name}...</h2>
         {!museum.artworks ? null : (
           <div class="card-columns">

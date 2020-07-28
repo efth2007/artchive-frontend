@@ -5,6 +5,9 @@ import Container from "react-bootstrap/Container";
 import { fetchMuseums } from "../../store/museums/actions";
 import { selectMuseums } from "../../store/museums/selectors";
 import Museum from "../../components/Museum";
+import GoogleMapReact from "google-map-react";
+import { LocationPin } from "../../components/Map/index.js";
+import "../../components/Map/index.css";
 
 export default function Museums() {
   const dispatch = useDispatch();
@@ -20,6 +23,27 @@ export default function Museums() {
     <>
       <Jumbotron>
         <h1>All Museums!</h1>
+        <div className="map">
+          <div className="google-map">
+            <GoogleMapReact
+              bootstrapURLKeys={{
+                key: "AIzaSyCq7OIj4xIJv_2CFRJkcfA38sIaFep0LUQ",
+              }}
+              defaultCenter={{ lat: 0, lng: 0 }}
+              defaultZoom={0}
+            >
+              {!museums
+                ? null
+                : museums.map((m) => (
+                    <LocationPin
+                      lat={m.latitude}
+                      lng={m.longitude}
+                      text={m.name}
+                    />
+                  ))}
+            </GoogleMapReact>{" "}
+          </div>
+        </div>
       </Jumbotron>
       <Container>
         <h1>MUSEUMS!!</h1>
