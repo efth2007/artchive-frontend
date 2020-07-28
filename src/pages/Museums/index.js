@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
-//import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Container from "react-bootstrap/Container";
+import { fetchMuseums } from "../../store/museums/actions";
+import { selectMuseums } from "../../store/museums/selectors";
+import Museum from "../../components/Museum";
 
 export default function Museums() {
-  //const dispatch = useDispatch();
-  //const artists = useSelector(selectArtists);
+  const dispatch = useDispatch();
+  const museums = useSelector(selectMuseums);
 
-  //  useEffect(() => {
-  //    dispatch(fetchArtists());
+  console.log("your museums here:", museums);
 
-  //  }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchMuseums());
+  }, [dispatch]);
 
   return (
     <>
@@ -19,6 +23,9 @@ export default function Museums() {
       </Jumbotron>
       <Container>
         <h1>MUSEUMS!!</h1>
+        {museums.map((m) => (
+          <Museum key={m.id} id={m.id} name={m.name} />
+        ))}
       </Container>
     </>
   );
