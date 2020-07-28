@@ -41,6 +41,7 @@ export default function ArtistDetails() {
               date={aw.date}
               imageUrl={aw.imageUrl}
               description={aw.description}
+              museum={aw.location}
             />
           ))}{" "}
         </div>
