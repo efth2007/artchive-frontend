@@ -9,6 +9,12 @@ export function museumByIdFetched(museum) {
   };
 }
 
+export function clearMuseumDetails() {
+  return {
+    type: "CLEAR_MUSEUM_DETAILS",
+  };
+}
+
 export const fetchMuseumById = (id) => {
   return async (dispatch, getState) => {
     const response = await axios.get(`${apiUrl}/locations/${id}`);

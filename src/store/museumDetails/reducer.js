@@ -10,6 +10,9 @@ export default (state = initialState, action) => {
         museum: action.payload,
       };
     }
+    case "CLEAR_MUSEUM_DETAILS": {
+      return initialState;
+    }
     default: {
       return state;
     }

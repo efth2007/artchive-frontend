@@ -7,8 +7,8 @@
 }
 
 .google-map {
-  width: 100%;
-  height: 60vh;
+  width: 60%;
+  height: 50vh;
 }
 
 .pin {
@@ -26,7 +26,7 @@
   font-size: 1.3em;
 }
 
-@media screen and (min-width: 799px) {
+@media screen and (min-width: 400px) {
   .google-map {
     height: 80vh;
   }
@@ -41,6 +41,6 @@
   }
 
   .pin-icon {
-    font-size: 10vw;
+    font-size: 3vw;
   }
 }
