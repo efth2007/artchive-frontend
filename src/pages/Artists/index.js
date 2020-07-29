@@ -5,11 +5,16 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { fetchArtists } from "../../store/artists/actions";
 import { selectArtists } from "../../store/artists/selectors";
+import { selectUser } from "../../store/user/selectors";
 import Artist from "../../components/Artist";
+import { Link } from "react-router-dom";
 
 export default function Artists() {
   const dispatch = useDispatch();
   const artists = useSelector(selectArtists);
+  const user = useSelector(selectUser);
+
+  console.log("Who is this??", user);
 
   const [sorting, set_sorting] = useState("chronologically");
   const [filter, set_filter] = useState("");
@@ -60,8 +65,11 @@ export default function Artists() {
       <Jumbotron>
         <h1>All Artists</h1>
 
-        {/* <Button onClick={alphabetically}>Alphabetically</Button>
-        <Button onClick={chronologically}>Chronologically</Button> */}
+        {!user.isAdmin ? null : (
+          <Link to={"create_new"}>
+            <Button>Add new artist...</Button>
+          </Link>
+        )}
         <label>Sort:</label>
         <select onChange={changeSorting}>
           <option value="chronologically">Chronologically</option>

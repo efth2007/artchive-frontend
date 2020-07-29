@@ -50,8 +50,6 @@ export default function MuseumDetails() {
 
   return (
     <div>
-      <h2>Museum details number {id} </h2>
-
       <h1>{museum.name}</h1>
 
       {!museum.name ? (
@@ -81,7 +79,7 @@ export default function MuseumDetails() {
         </GoogleMapReact> */}
 
       <div>
-        <h2>Some artworks you can see at {museum.name}...</h2>
+        <h2>Some artworks you can see at the {museum.name}...</h2>
         {!museum.artworks ? null : (
           <div class="card-columns">
             {" "}

@@ -10,6 +10,7 @@ import Artists from "./pages/Artists";
 import ArtistDetails from "./pages/ArtistDetails";
 import Museums from "./pages/Museums";
 import MuseumDetails from "./pages/MuseumDetails";
+import AddArtistForm from "./pages/AddArtistForm";
 
 import { useDispatch, useSelector } from "react-redux";
 import { appLoading } from "./store/appState/selectors";
@@ -39,6 +40,7 @@ function App() {
         <Route path="/artists/:id" component={ArtistDetails} />
         <Route exact path="/museums" component={Museums} />
         <Route path="/museums/:id" component={MuseumDetails} />
+        <Route path="/create_new" component={AddArtistForm} />
       </Switch>
     </div>
   );
