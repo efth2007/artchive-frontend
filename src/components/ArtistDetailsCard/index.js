@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function Artist(props) {
   return (
-    <Jumbotron>
+    <div>
       {props.knownAs ? (
         <div>
           <h1>{props.knownAs}</h1>
@@ -33,7 +33,8 @@ export default function Artist(props) {
 
       <p>
         <a href={props.wikiUrl}>View wiki page...</a>
+        <br />
       </p>
-    </Jumbotron>
+    </div>
   );
 }
