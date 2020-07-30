@@ -98,12 +98,43 @@ export const getUserWithStoredToken = () => {
       dispatch(tokenStillValid(response.data));
       dispatch(appDoneLoading());
     } catch (error) {
-      console.log(error.response.message);
+      //     console.log(error.response.message);
 
       // if we get a 4xx or 5xx response,
       // get rid of the token by logging out
       dispatch(logOut());
       dispatch(appDoneLoading());
+    }
+  };
+};
+
+export function artistAddedToFavorites(newFavorite) {
+  return {
+    type: "ARTIST_ADDED_TO_FAVORITES",
+    payload: newFavorite,
+  };
+}
+
+export const addArtistToFavorites = (userId, artistId) => {
+  return async (dispatch, getState) => {
+    console.log("I WILL DISPATCH THESE:", userId, artistId);
+
+    try {
+      console.log(`userId:${userId}, artistId: ${artistId}`);
+      const response = await axios.post(`${apiUrl}/artists/add_to_favorites`, {
+        userId,
+        artistId,
+      });
+
+      console.log("Added to favorites:", response.data.newFavorite);
+
+      dispatch(artistAddedToFavorites(response.data.newFavorite));
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+      } else {
+        console.log(error.message);
+      }
     }
   };
 };

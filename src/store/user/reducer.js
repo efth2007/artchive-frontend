@@ -19,6 +19,9 @@ export default (state = initialState, action) => {
     case TOKEN_STILL_VALID:
       return { ...state, ...action.payload };
 
+    // case "ARTIST_ADDED_TO_FAVORITES":
+    //   return { ...state, ...action.payload };
+
     default:
       return state;
   }

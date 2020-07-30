@@ -57,8 +57,16 @@ export default function AddArtistForm() {
       )
     );
 
-    // setEmail("");
-    // setPassword("");
+    set_firstName("");
+    set_lastName("");
+    set_knownAs("");
+    set_placeOfBirth("");
+    set_placeOfDeath("");
+    set_bornOn("");
+    set_diedOn("");
+    set_gender("");
+    set_nationality("");
+    set_wikiUrl("");
   }
 
   return (
