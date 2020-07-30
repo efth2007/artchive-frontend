@@ -90,7 +90,9 @@ export default function Artists() {
   const displayedArtists =
     sorting === "alphabetically"
       ? artistsSortedAlphabetically
-      : artistsSortedChronologically;
+      : sorting === "chronologically"
+      ? artistsSortedChronologically
+      : [...filteredArtists];
 
   const changeSorting = (e) => set_sorting(e.target.value);
   // set_filteredArtists(displayedArtists);
@@ -101,28 +103,90 @@ export default function Artists() {
         <h1>All Artists</h1>
 
         {!user.isAdmin ? null : (
-          <Link to={"create_new"}>
-            <Button>Add new artist...</Button>
-          </Link>
-        )}
-        {!token ? null : (
-          // <Button onClick={filterFaves}>View my favorites</Button>
-          <div>
-            <label>View:</label>
-            <select onChange={filterFaves}>
-              <option value="view-all">All artists</option>
-              <option value="view-favorites">My favorite artists</option>
-            </select>
+          <div class="text-center mb-3">
+            <Link to={"create_new"}>
+              <Button>Add new artist...</Button>
+            </Link>
           </div>
         )}
-        <br />
-        <label>Sort:</label>
-        <select onChange={changeSorting}>
-          <option value="alphabetically">Alphabetically</option>
-          <option value="chronologically">Chronologically</option>
-        </select>
-        <br />
-        <label>Country:</label>
+
+        <div class="container">
+          <div class="row">
+            {!token ? null : (
+              // <Button onClick={filterFaves}>View my favorites</Button>
+              <div class="col-sm">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" for="favoritesOrAll">
+                      View...
+                    </label>
+                  </div>
+
+                  <select
+                    class="custom-select"
+                    id="favoritesOrAll"
+                    onChange={filterFaves}
+                    style={{ width: "10%" }}
+                  >
+                    <option value="view-all" selected>
+                      All artists
+                    </option>
+                    <option value="view-favorites">My favorite artists</option>
+                  </select>
+                </div>
+              </div>
+            )}
+            <div class="col-sm">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="sortingMethod">
+                    Sort by
+                  </label>
+                </div>
+                <select
+                  class="custom-select"
+                  id="sortingMethod"
+                  onChange={changeSorting}
+                  style={{ width: "10%" }}
+                >
+                  <option selected>Choose...</option>
+                  <option value="alphabetically">Name</option>
+                  <option value="chronologically">Period</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="countrySelect">
+                    Country
+                  </label>
+                </div>
+                <select
+                  class="custom-select"
+                  id="countrySelect"
+                  onChange={filterByCountry}
+                  style={{ width: "10%" }}
+                >
+                  <option selected>Choose...</option>
+
+                  <option value="All">View All</option>
+                  <option value="Austrian">Austria</option>
+                  <option value="Flemish">Belgium</option>
+                  <option value="French">France</option>
+                  <option value="German">Germany</option>
+                  <option value="Italian">Italy</option>
+                  <option value="Dutch">Netherlands</option>
+                  <option value="Russian">Russia</option>
+                  <option value="Spanish">Spain</option>
+                  <option value="English">United Kingdom</option>
+                  <option value="American">United States</option>
+                </select>
+              </div>
+
+              {/* 
+
+              <label>Country:</label>
         <select onChange={filterByCountry}>
           <option value="All">View All</option>
           <option value="Austrian">Austria</option>
@@ -135,7 +199,20 @@ export default function Artists() {
           <option value="Spanish">Spain</option>
           <option value="English">United Kingdom</option>
           <option value="American">United States</option>
+        </select> */}
+            </div>
+          </div>
+        </div>
+
+        {/* 
+        <label>Sort:</label>
+        <select onChange={changeSorting}>
+          <option value="alphabetically">Alphabetically</option>
+          <option value="chronologically">Chronologically</option>
         </select>
+        <br />
+
+ */}
       </Jumbotron>
       <Container>
         {!displayedArtists

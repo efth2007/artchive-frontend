@@ -19,7 +19,7 @@ export default function Navigation() {
   return (
     <Navbar bg="primary" variant="dark" expand="lg">
       <Navbar.Brand as={NavLink} to="/">
-        APP NAME
+        <strong>AR(T)CHIVE</strong>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
