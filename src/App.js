@@ -11,13 +11,12 @@ import ArtistDetails from "./pages/ArtistDetails";
 import Museums from "./pages/Museums";
 import MuseumDetails from "./pages/MuseumDetails";
 import AddArtistForm from "./pages/AddArtistForm";
+import Homepage from "./pages/Homepage";
 
 import { useDispatch, useSelector } from "react-redux";
 import { appLoading } from "./store/appState/selectors";
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
-
-const Home = () => <h1>Home</h1>;
 
 function App() {
   const dispatch = useDispatch();
@@ -33,7 +32,7 @@ function App() {
       <MessageBox />
       <Switch>
         {isLoading ? <Loading /> : null}
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={Homepage} />
         <Route exact path="/artists" component={Artists} />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />

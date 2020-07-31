@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { fetchMuseumById } from "../../store/museumDetails/actions";
 import { selectMuseumDetails } from "../../store/museumDetails/selectors";
 import { Map } from "../../components/Map";
-//import GoogleMapReact from "google-map-react";
+
 import Artwork from "../../components/Artwork";
 
 export default function MuseumDetails() {
@@ -19,34 +19,9 @@ export default function MuseumDetails() {
 
   console.log("Museum??", museum);
 
-  // const location = {
-  //   address: museum.name,
-  //   lat: parseFloat(museum.latitude),
-  //   lng: parseFloat(museum.longitude),
-  // };
-
-  // const zoomLevel = 15;
-
-  // const location2 = {
-  //   lat: 52.359997,
-  //   lng: 4.885219,
-  //   address: "BLA",
-  // };
-
   console.log(
     `location of ${museum.name}: ${museum.latitude}, ${museum.longitude}`
   );
-
-  //////////
-  // const defaultProps = {
-  //   center: {
-  //     lat: museum.latitude,
-  //     lng: museum.longitude,
-  //   },
-  //   zoom: 11,
-  // };
-
-  /////////////
 
   return (
     <div>
@@ -64,19 +39,6 @@ export default function MuseumDetails() {
           zoomLevel={15}
         />
       )}
-
-      {/* <div style={{ height: "100vh", width: "100%" }}> */}
-      {/* <GoogleMapReact
-          bootstrapURLKeys={{ key: "AIzaSyCq7OIj4xIJv_2CFRJkcfA38sIaFep0LUQ" }}
-          defaultCenter={defaultProps.center}
-          defaultZoom={defaultProps.zoom}
-        >
-          <AnyReactComponent
-            lat={museum.latitude}
-            lng={museum.longitude}
-            text="My Marker"
-          />
-        </GoogleMapReact> */}
 
       <div>
         <h2>Some artworks you can see at the {museum.name}...</h2>

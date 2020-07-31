@@ -11,11 +11,12 @@ import ArtistDetailsCard from "../../components/ArtistDetailsCard";
 import Artwork from "../../components/Artwork";
 
 export default function ArtistDetails() {
+  const dispatch = useDispatch();
   const { id } = useParams();
   const artistId = id;
   const userId = useSelector(selectId);
-  const dispatch = useDispatch();
   const token = useSelector(selectToken);
+  const artist = useSelector(selectArtistDetails).artist;
 
   useEffect(() => {
     dispatch(fetchArtistById(artistId));
@@ -26,7 +27,6 @@ export default function ArtistDetails() {
     dispatch(addArtistToFavorites(userId, artistId));
   };
 
-  const artist = useSelector(selectArtistDetails).artist;
   console.log("Yoooo, artist??", artist);
   return (
     <div>
