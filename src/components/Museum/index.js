@@ -15,8 +15,22 @@ export default function Museum(props) {
   };
 
   return (
-    <Card>
-      <h3 onClick={onLinkClick}>{props.name}</h3>
-    </Card>
+    <div className="bg-light mb-4 text-left border rounded">
+      <div className="card-body">
+        <div class="row">
+          <div class="col-2">
+            <img src={props.imageUrl} alt="new" width="150" />
+          </div>
+
+          <div class="col-7">
+            {" "}
+            <h3 onClick={onLinkClick}>{props.name}</h3>
+            <p>
+              📍 {props.city}, {props.country}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

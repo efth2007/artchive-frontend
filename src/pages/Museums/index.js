@@ -22,7 +22,7 @@ export default function Museums() {
   return (
     <>
       <Jumbotron>
-        <h1>All Museums!</h1>
+        <h1>Discover your favorite museum</h1>
         <div className="map">
           <div className="google-map">
             <GoogleMapReact
@@ -30,7 +30,7 @@ export default function Museums() {
                 key: "AIzaSyCq7OIj4xIJv_2CFRJkcfA38sIaFep0LUQ",
               }}
               defaultCenter={{ lat: 0, lng: 0 }}
-              defaultZoom={0}
+              defaultZoom={1}
             >
               {!museums
                 ? null
@@ -46,9 +46,16 @@ export default function Museums() {
         </div>
       </Jumbotron>
       <Container>
-        <h1>MUSEUMS!!</h1>
         {museums.map((m) => (
-          <Museum key={m.id} id={m.id} name={m.name} />
+          <Museum
+            key={m.id}
+            id={m.id}
+            name={m.name}
+            city={m.city}
+            country={m.country}
+            imageUrl={m.imageUrl}
+            description={m.description}
+          />
         ))}
       </Container>
     </>

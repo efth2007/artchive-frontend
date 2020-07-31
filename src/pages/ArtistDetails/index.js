@@ -31,6 +31,23 @@ export default function ArtistDetails() {
   return (
     <div>
       <h2>Artist details number {artistId} </h2>
+
+      {/* 
+      Random map from bootstrap...
+      
+      <div
+        id="map-container-google-1"
+        class="z-depth-1-half map-container"
+        style={{ height: 500 }}
+      >
+        <iframe
+          src="https://maps.google.com/maps?q=manhatan&t=&z=13&ie=UTF8&iwloc=&output=embed"
+          frameborder="0"
+          style={{y}}
+          allowfullscreen
+        ></iframe>
+      </div> */}
+
       <Jumbotron>
         <ArtistDetailsCard
           key={artist.id}

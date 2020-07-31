@@ -44,7 +44,9 @@ export default function Homepage() {
   return (
     <div>
       <div class="jumbotron">
-        <h1>Welcome to Ar(t)chive</h1>
+        <div class="text-center mb-3">
+          <h1>Welcome to Ar(t)chive</h1>
+        </div>
         <h4>
           BLabalbablaba
           {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -79,19 +81,30 @@ export default function Homepage() {
                   <p>Nationality: {featuredArtist.nationality}</p>
                   <p>
                     * {featuredArtist.placeOfBirth}, {featuredArtist.bornOn}
-                    <br />† {featuredArtist.placeOfDeath},{" "}
-                    {featuredArtist.diedOn}
-                  </p>
-                  <p>
-                    Tags:{" "}
-                    {!featuredArtist.tags
+                    <br />
+                    {!featuredArtist.diedOn
                       ? null
-                      : featuredArtist.tags.map((t, index) => (
-                          <span key={t.id}>
-                            {(index ? ", " : "") + t.tagName}
-                          </span>
-                        ))}
+                      : `† ${featuredArtist.placeOfDeath}, 
+                    ${featuredArtist.diedOn}`}
                   </p>
+
+                  {!featuredArtist.tags ? null : (
+                    <p>
+                      {" "}
+                      Tags:{" "}
+                      {featuredArtist.painter ? (
+                        <span class="badge badge-dark">painter</span>
+                      ) : null}{" "}
+                      {featuredArtist.sculptor ? (
+                        <span class="badge badge-dark">sculptor</span>
+                      ) : null}{" "}
+                      {featuredArtist.tags.map((t, index) => (
+                        <span class="badge badge-secondary" key={t.id}>
+                          {(index ? ", " : "") + t.tagName}
+                        </span>
+                      ))}{" "}
+                    </p>
+                  )}
 
                   <p>{featuredArtist.bio}</p>
                   <p>

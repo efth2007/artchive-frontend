@@ -25,23 +25,42 @@ export default function MuseumDetails() {
 
   return (
     <div>
-      <h1>{museum.name}</h1>
+      <div class="jumbotron">
+        <div class="row mb-5 text-left">
+          <div class="col-4">
+            <img src={museum.imageUrl} alt="new" height="300" />
+          </div>
+          <div class="col-7">
+            {" "}
+            <h1>{museum.name}</h1>
+            <h5>
+              {museum.city}, {museum.country}
+            </h5>
+            <p>{museum.description}</p>
+            <br />
+            <h5>
+              <a href={museum.website} target="_blank">
+                Visit the {museum.name}...
+              </a>
+            </h5>
+          </div>
+        </div>
 
-      {!museum.name ? (
-        <h1>WAIT!!</h1>
-      ) : (
-        <Map
-          location={{
-            address: museum.name,
-            lat: parseFloat(museum.latitude),
-            lng: parseFloat(museum.longitude),
-          }}
-          zoomLevel={15}
-        />
-      )}
+        {!museum.name ? null : (
+          <Map
+            location={{
+              address: museum.name,
+              lat: parseFloat(museum.latitude),
+              lng: parseFloat(museum.longitude),
+            }}
+            zoomLevel={15}
+          />
+        )}
+      </div>
 
       <div>
         <h2>Some artworks you can see at the {museum.name}...</h2>
+
         {!museum.artworks ? null : (
           <div class="card-columns">
             {" "}

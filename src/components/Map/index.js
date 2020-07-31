@@ -14,7 +14,7 @@ export const LocationPin = ({ text }) => (
 
 export const Map = ({ location, zoomLevel }) => (
   <div className="map">
-    <h2 className="map-h2">Come Visit Us</h2>
+    {/* <h2 className="map-h2">Come Visit Us</h2> */}
 
     <div className="google-map">
       <GoogleMapReact
