@@ -59,58 +59,62 @@ export default function Homepage() {
         </h4>
       </div>
       <div class="container">
-        <div class="card text-left border rounded">
-          <div class="card-header">Featured artist of the day: </div>
+        <div class="card mb-5 text-left border rounded">
           {!featuredArtist ? null : (
-            <div class="card-body">
-              <div class="row">
-                <div class="col-4">
-                  <img src={featuredArtist.imageUrl} alt="new" height="300" />
-                </div>
-                <div class="col-7">
-                  <Link to={`/artists/${featuredArtist.id}`}>
-                    {" "}
-                    {featuredArtist.knownAs ? (
-                      <h3>{featuredArtist.knownAs}</h3>
-                    ) : (
-                      <h3>
-                        {featuredArtist.firstName} {featuredArtist.lastName}{" "}
-                      </h3>
-                    )}
-                  </Link>
-                  <p>Nationality: {featuredArtist.nationality}</p>
-                  <p>
-                    * {featuredArtist.placeOfBirth}, {featuredArtist.bornOn}
-                    <br />
-                    {!featuredArtist.diedOn
-                      ? null
-                      : `† ${featuredArtist.placeOfDeath}, 
-                    ${featuredArtist.diedOn}`}
-                  </p>
-
-                  {!featuredArtist.tags ? null : (
-                    <p>
+            <div>
+              <div class="card-header">Featured artist of the day: </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-4">
+                    <img src={featuredArtist.imageUrl} alt="new" height="300" />
+                  </div>
+                  <div class="col-7">
+                    <Link to={`/artists/${featuredArtist.id}`}>
                       {" "}
-                      Tags:{" "}
-                      {featuredArtist.painter ? (
-                        <span class="badge badge-dark">painter</span>
-                      ) : null}{" "}
-                      {featuredArtist.sculptor ? (
-                        <span class="badge badge-dark">sculptor</span>
-                      ) : null}{" "}
-                      {featuredArtist.tags.map((t, index) => (
-                        <span class="badge badge-secondary" key={t.id}>
-                          {(index ? ", " : "") + t.tagName}
-                        </span>
-                      ))}{" "}
-                    </p>
-                  )}
+                      {featuredArtist.knownAs ? (
+                        <h3>{featuredArtist.knownAs}</h3>
+                      ) : (
+                        <h3>
+                          {featuredArtist.firstName} {featuredArtist.lastName}{" "}
+                        </h3>
+                      )}
+                    </Link>
 
-                  <p>{featuredArtist.bio}</p>
-                  <p>
-                    <a href={featuredArtist.wikiUrl}>View wiki page...</a>
-                    <br />
-                  </p>
+                    <p>
+                      * {featuredArtist.placeOfBirth}, {featuredArtist.bornOn}
+                      <br />
+                      {!featuredArtist.diedOn
+                        ? null
+                        : `† ${featuredArtist.placeOfDeath}, 
+                    ${featuredArtist.diedOn}`}
+                    </p>
+                    <p>Nationality: {featuredArtist.nationality}</p>
+                    {!featuredArtist.tags ? null : (
+                      <p>
+                        {" "}
+                        Tags:{" "}
+                        {featuredArtist.painter ? (
+                          <span class="badge badge-dark">painter</span>
+                        ) : null}{" "}
+                        {featuredArtist.sculptor ? (
+                          <span class="badge badge-dark">sculptor</span>
+                        ) : null}{" "}
+                        {featuredArtist.tags.map((t, index) => (
+                          <span class="badge badge-secondary" key={t.id}>
+                            {(index ? ", " : "") + t.tagName}
+                          </span>
+                        ))}{" "}
+                      </p>
+                    )}
+
+                    <p>{featuredArtist.bio}</p>
+                    <p>
+                      <a href={featuredArtist.wikiUrl} target="_blank">
+                        View wiki page...
+                      </a>
+                      <br />
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

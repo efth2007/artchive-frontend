@@ -25,12 +25,13 @@ export default function ArtistDetails() {
   const faveButtonClicked = (e) => {
     e.preventDefault();
     dispatch(addArtistToFavorites(userId, artistId));
+    console.log("added!!");
   };
 
   console.log("Yoooo, artist??", artist);
   return (
     <div>
-      <h2>Artist details number {artistId} </h2>
+      {/* <h2>Artist details number {artistId} </h2> */}
 
       {/* 
       Random map from bootstrap...
@@ -49,19 +50,33 @@ export default function ArtistDetails() {
       </div> */}
 
       <Jumbotron>
-        <ArtistDetailsCard
-          key={artist.id}
-          knownAs={artist.knownAs}
-          firstName={artist.firstName}
-          lastName={artist.lastName}
-          bornOn={artist.bornOn}
-          diedOn={artist.diedOn}
-          placeOfBirth={artist.placeOfBirth}
-          placeOfDeath={artist.placeOfDeath}
-          wikiUrl={artist.wikiUrl}
-          tags={artist.tags}
-        />
-        {!token ? null : <Button onClick={faveButtonClicked}>Fave!</Button>}
+        {!artist ? null : (
+          <div>
+            <ArtistDetailsCard
+              key={artist.id}
+              knownAs={artist.knownAs}
+              firstName={artist.firstName}
+              lastName={artist.lastName}
+              bornOn={artist.bornOn}
+              diedOn={artist.diedOn}
+              placeOfBirth={artist.placeOfBirth}
+              placeOfDeath={artist.placeOfDeath}
+              wikiUrl={artist.wikiUrl}
+              tags={artist.tags}
+              imageUrl={artist.imageUrl}
+              bio={artist.bio}
+              nationality={artist.nationality}
+              painter={artist.painter}
+              sculptor={artist.sculptor}
+              faveButtonClicked={faveButtonClicked}
+            />
+            {!token ? null : (
+              <Button onClick={faveButtonClicked}>
+                Add artist to your Favorites
+              </Button>
+            )}
+          </div>
+        )}
       </Jumbotron>
       {!artist.artworks ? null : (
         <div class="card-columns">
