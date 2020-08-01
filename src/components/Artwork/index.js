@@ -5,7 +5,12 @@ import { Link } from "react-router-dom";
 export default function Artwork(props) {
   return (
     <div class="card">
-      <img src={props.imageUrl} class="img-fluid" alt={props.title} />
+      <img
+        src={props.imageUrl}
+        class="img-fluid mt-4"
+        width="300"
+        alt={props.title}
+      />
 
       <div class="card-body">
         <h4 class="card-title">

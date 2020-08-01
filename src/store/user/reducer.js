@@ -4,6 +4,7 @@ const initialState = {
   token: localStorage.getItem("token"),
   name: null,
   email: null,
+  artists: null,
 };
 
 export default (state = initialState, action) => {
@@ -19,8 +20,16 @@ export default (state = initialState, action) => {
     case TOKEN_STILL_VALID:
       return { ...state, ...action.payload };
 
-    // case "ARTIST_ADDED_TO_FAVORITES":
-    //   return { ...state, ...action.payload };
+    case "ARTIST_ADDED_TO_FAVORITES":
+      return { ...state, artists: [...state.artists, action.payload] };
+
+    case "ARTIST_REMOVED_FROM_FAVORITES":
+      const artistToRemoveId = action.payload.id;
+      const newFavorites = state.artists.filter(
+        (a) => a.id !== artistToRemoveId
+      );
+
+      return { ...state, artists: newFavorites };
 
     default:
       return state;

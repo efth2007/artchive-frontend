@@ -117,7 +117,7 @@ export function artistAddedToFavorites(newFavorite) {
 
 export const addArtistToFavorites = (userId, artistId) => {
   return async (dispatch, getState) => {
-    console.log("I WILL DISPATCH THESE:", userId, artistId);
+    console.log("I WILL ADD TO FAVORITES THESE:", userId, artistId);
 
     try {
       console.log(`userId:${userId}, artistId: ${artistId}`);
@@ -126,15 +126,48 @@ export const addArtistToFavorites = (userId, artistId) => {
         artistId,
       });
 
-      console.log("Added to favorites:", response.data.newFavorite);
+      console.log("Added to favorites:", response.data.favedArtist);
 
-      dispatch(artistAddedToFavorites(response.data.newFavorite));
+      dispatch(artistAddedToFavorites(response.data.favedArtist));
     } catch (error) {
       if (error.response) {
         console.log(error.response.data.message);
       } else {
         console.log(error.message);
       }
+    }
+  };
+};
+
+export function artistRemovedFromFavorites(artistToRemove) {
+  return {
+    type: "ARTIST_REMOVED_FROM_FAVORITES",
+    payload: artistToRemove,
+  };
+}
+
+export const removeArtistFromFavorites = (userId, artistId) => {
+  return async (dispatch, getState) => {
+    console.log("I WILL REMOVE THE ARITST:", userId, artistId);
+
+    try {
+      console.log(`userId:${userId}, artistId: ${artistId}`);
+
+      const response = await axios.delete(
+        `${apiUrl}/artists/remove_from_favorites/${userId}/${artistId}`
+        //`${apiUrl}/artists/remove_from_favorites`,
+
+        // {
+        //   userId,
+        //   artistId,
+
+        // }
+      );
+
+      console.log("Favorite removed?", response.data.artistRemoved);
+      dispatch(artistRemovedFromFavorites(response.data.artistRemoved));
+    } catch (e) {
+      console.error(e);
     }
   };
 };

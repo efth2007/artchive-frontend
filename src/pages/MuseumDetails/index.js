@@ -59,22 +59,23 @@ export default function MuseumDetails() {
       </div>
 
       <div>
-        <h2>Some artworks you can see at the {museum.name}...</h2>
-
         {!museum.artworks ? null : (
-          <div class="card-columns">
-            {" "}
-            {museum.artworks.map((aw) => (
-              <Artwork
-                key={aw.id}
-                title={aw.title}
-                date={aw.date}
-                imageUrl={aw.imageUrl}
-                description={aw.description}
-                museum={aw.location}
-                artist={aw.artist}
-              />
-            ))}{" "}
+          <div>
+            <h2 class="mb-5">Discover the {museum.name} collection...</h2>
+            <div class="card-columns">
+              {" "}
+              {museum.artworks.map((aw) => (
+                <Artwork
+                  key={aw.id}
+                  title={aw.title}
+                  date={aw.date}
+                  imageUrl={aw.imageUrl}
+                  description={aw.description}
+                  museum={aw.location}
+                  artist={aw.artist}
+                />
+              ))}{" "}
+            </div>
           </div>
         )}
       </div>

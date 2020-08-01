@@ -1,10 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchArtistById } from "../../store/artistDetails/actions";
-import { addArtistToFavorites } from "../../store/user/actions";
+import {
+  addArtistToFavorites,
+  removeArtistFromFavorites,
+} from "../../store/user/actions";
 import { selectArtistDetails } from "../../store/artistDetails/selectors";
-import { selectToken, selectId } from "../../store/user/selectors";
+import {
+  selectToken,
+  selectId,
+  selectFavorites,
+} from "../../store/user/selectors";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Button from "react-bootstrap/Button";
 import ArtistDetailsCard from "../../components/ArtistDetailsCard";
@@ -17,6 +24,11 @@ export default function ArtistDetails() {
   const userId = useSelector(selectId);
   const token = useSelector(selectToken);
   const artist = useSelector(selectArtistDetails).artist;
+  const favorites = useSelector(selectFavorites);
+
+  const isFavorite = favorites
+    ? favorites.filter((f) => f.id === parseInt(artistId)).length > 0
+    : null;
 
   useEffect(() => {
     dispatch(fetchArtistById(artistId));
@@ -24,11 +36,15 @@ export default function ArtistDetails() {
 
   const faveButtonClicked = (e) => {
     e.preventDefault();
-    dispatch(addArtistToFavorites(userId, artistId));
-    console.log("added!!");
+
+    isFavorite
+      ? dispatch(removeArtistFromFavorites(userId, artistId))
+      : dispatch(addArtistToFavorites(userId, artistId));
   };
 
   console.log("Yoooo, artist??", artist);
+  console.log("favorites:...", favorites);
+
   return (
     <div>
       {/* <h2>Artist details number {artistId} </h2> */}
@@ -68,29 +84,35 @@ export default function ArtistDetails() {
               nationality={artist.nationality}
               painter={artist.painter}
               sculptor={artist.sculptor}
-              faveButtonClicked={faveButtonClicked}
             />
             {!token ? null : (
               <Button onClick={faveButtonClicked}>
-                Add artist to your Favorites
+                {isFavorite ? "Is favorite!" : "Add to favorites"}
               </Button>
             )}
           </div>
         )}
       </Jumbotron>
       {!artist.artworks ? null : (
-        <div class="card-columns">
-          {" "}
-          {artist.artworks.map((aw) => (
-            <Artwork
-              key={aw.id}
-              title={aw.title}
-              date={aw.date}
-              imageUrl={aw.imageUrl}
-              description={aw.description}
-              museum={aw.location}
-            />
-          ))}{" "}
+        <div>
+          <h2 class="mb-5">
+            Some works by{" "}
+            {artist.knownAs || `${artist.firstName} ${artist.lastName}`}...
+          </h2>
+
+          <div class="card-columns">
+            {" "}
+            {artist.artworks.map((aw) => (
+              <Artwork
+                key={aw.id}
+                title={aw.title}
+                date={aw.date}
+                imageUrl={aw.imageUrl}
+                description={aw.description}
+                museum={aw.location}
+              />
+            ))}{" "}
+          </div>
         </div>
       )}
     </div>
