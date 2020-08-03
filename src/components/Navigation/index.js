@@ -29,10 +29,10 @@ export default function Navigation() {
           <NavbarItem path="/museums" linkText="Museums" />
           {loginLogoutControls}
 
-          <Form inline>
+          {/* <Form inline>
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
             <Button variant="outline-info">Search</Button>
-          </Form>
+          </Form> */}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
