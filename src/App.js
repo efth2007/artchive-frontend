@@ -7,6 +7,7 @@ import MessageBox from "./components/MessageBox";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Artists from "./pages/Artists";
+import Artists2 from "./pages/Artists2";
 import ArtistDetails from "./pages/ArtistDetails";
 import Museums from "./pages/Museums";
 import MuseumDetails from "./pages/MuseumDetails";
@@ -34,9 +35,11 @@ function App() {
         {isLoading ? <Loading /> : null}
         <Route exact path="/" component={Homepage} />
         <Route exact path="/artists" component={Artists} />
+        {/* <Route exact path="/artists/:faveOrAll" component={Artists} /> */}
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
-        <Route path="/artists/:id" component={ArtistDetails} />
+        <Route exact path="/artists/:id" component={ArtistDetails} />
+        {/* <Route exact path="/artists/:id/details" component={ArtistDetails} /> */}
         <Route exact path="/museums" component={Museums} />
         <Route path="/museums/:id" component={MuseumDetails} />
         <Route path="/create_new" component={AddArtistForm} />

@@ -11,60 +11,58 @@ import {
   selectFavorites,
 } from "../../store/user/selectors";
 import Artist from "../../components/Artist";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function Artists() {
   const dispatch = useDispatch();
-  const artists = useSelector(selectArtists);
+  const allArtists = useSelector(selectArtists);
   const user = useSelector(selectUser);
   const token = useSelector(selectToken);
   const favoriteArtists = useSelector(selectFavorites);
+  const { faveOrAll } = useParams();
 
-  console.log("Who is this??", user);
-  console.log("My favorites are:", favoriteArtists);
+  const artists =
+    faveOrAll === "all"
+      ? allArtists
+      : faveOrAll === "favorites"
+      ? favoriteArtists
+      : null;
 
-  const [artistsToManage, set_artistsToManage] = useState(artists);
+  console.log("Favorites or all??", faveOrAll);
+  //const [artistsToManage, set_artistsToManage] = useState(artists);
   const [sorting, set_sorting] = useState("alphabetically");
-  //const [countryFilter, set_countryFilter] = useState("");
-
-  //const [artistsToEdit, set_artistsToEdit] = useState(artists);
 
   const [filteredArtists, set_filteredArtists] = useState("");
 
-  //const favoriteArtists = [];
-  const filterFaves = (e) => {
-    if (e.target.value === "view-all") {
-      console.log("View all!!!!");
-      set_artistsToManage(artists);
-    } else {
-      console.log("FAVORITES ONLY");
-      set_artistsToManage(favoriteArtists);
-    }
-  };
+  //   const filterFaves = (e) => {
+  //     if (e.target.value === "view-all") {
+  //       console.log("View all!!!!");
+  //       set_artistsToManage(artists);
+  //     } else {
+  //       console.log("FAVORITES ONLY");
+  //       set_artistsToManage(favoriteArtists);
+  //     }
+  //   };
 
   const filterByCountry = (e) => {
-    //  set_countryFilter(e.target.value);
     if (e.target.value === "All") {
-      set_filteredArtists(artistsToManage);
+      set_filteredArtists(artists); //     set_filteredArtists(artistsToManage);
     } else {
-      const artistsByCountry = artistsToManage.filter(
+      const artistsByCountry = artists.filter(
+        //artistsToManage.filter(
         (artist) => artist.nationality === e.target.value
       );
       set_filteredArtists(artistsByCountry);
     }
   };
 
-  //console.log("DISPLAYED:", filteredArtists);
-  //console.log("FETCHED:", artists);
-
   useEffect(() => {
     dispatch(fetchArtists());
-    // set_filteredArtists();
   }, [dispatch]);
 
-  useEffect(() => {
-    set_artistsToManage(artists);
-  }, [artists]);
+  //   useEffect(() => {
+  //     set_artistsToManage(artists);
+  //   }, [artists]);
 
   useEffect(() => {
     set_filteredArtists(artists);
@@ -86,10 +84,30 @@ export default function Artists() {
       : [...filteredArtists];
 
   const changeSorting = (e) => set_sorting(e.target.value);
-  // set_filteredArtists(displayedArtists);
 
   return (
     <>
+      22222222222222222222222222
+      <Container>
+        <ul class="nav justify-content-left">
+          <li class="nav-item">
+            <a class="nav-link active" href="all">
+              All
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="favorites">
+              My favorites
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">
+              Disabled
+            </a>
+          </li>
+        </ul>
+      </Container>
       <Jumbotron>
         <h1>All Artists</h1>
 
@@ -103,6 +121,7 @@ export default function Artists() {
 
         <div class="container">
           <div class="row">
+            {/*               
             {!token ? null : (
               // <Button onClick={filterFaves}>View my favorites</Button>
               <div class="col-sm">
@@ -127,6 +146,8 @@ export default function Artists() {
                 </div>
               </div>
             )}
+ */}
+
             <div class="col-sm">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -205,7 +226,6 @@ export default function Artists() {
 
  */}
       </Jumbotron>
-
       <Container>
         {!displayedArtists
           ? null
