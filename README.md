@@ -1,68 +1,41 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## The ar(t)chive
 
-## Available Scripts
+### Purpose
 
-In the project directory, you can run:
+This project was made to help me exercise my freshly learned coding skills and apply them in a meaningful and useful way.
 
-### `npm start`
+The main function of the ar(t)chive app is to showcase a list of important artists, some information about them, some of their artworks and the museums where these can be found. The database used was created from scratch and will be getting expanded with frequent updates to include more artists, artworks and museums.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Features:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- The homepage displays the ‘featured artist of the day’, an artist that randomly changes every day. This uses a random number generator that receives a different seed every day. NOTE: For demo purposes, the seed (and therefore the artist) changes every minute.
 
-### `npm test`
+- The ‘Artists’ page displays all the artists currently in the database. They can be sorted alphabetically (according to their last name) or chronologically (according to their date of birth). A logged in user can also filter the list to only show the artists they have added as their favorites.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- By clicking on an artist’s name on the list, the user gets redirected to the artist’s detail page, where they can see some more information about the artist, as well as some of his/her artworks. If the user is logged in, they can add the artist as a favorite.
 
-### `npm run build`
+- The ‘Museums’ page displays the museums currently in the database, along with their pinned locations on a world map.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- On a museum’s details page there is some extra information about the museum, along with artworks that can be found in its collection.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Technologies and libraries used:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- react
+- redux
+- axios
+- express
+- react-bootstrap
+- [google-map-react](https://github.com/google-map-react/google-map-react)
+- [seedrandom](https://github.com/google-map-react/google-map-react)
 
-### `npm run eject`
+### Links
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+[Datamodel](https://dbdiagram.io/d/5f15b5a174ca2227330d95de)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+[Frontend repository](https://github.com/efth2007/artchive-frontend)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+[Backend repository](https://github.com/efth2007/artchive-backend)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+[Taskboard](https://github.com/efth2007/artchive-frontend/projects/1)
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+[Wireframe](https://wireframepro.mockflow.com/view/M9af9a3f9764db424a3c6d7f6e33bd9bb1595326380785#/page/ceab4dc4215d40c2b87ae4bcff725fb1)
