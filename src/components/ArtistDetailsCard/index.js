@@ -8,7 +8,14 @@ export default function Artist(props) {
     <div>
       <div class="row mb-5 text-left">
         <div class="col-3 ml-4">
-          <img src={props.imageUrl} alt="new" width="350" />
+          <img
+            src={
+              props.imageUrl ||
+              "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+            }
+            alt="new"
+            width="350"
+          />
         </div>
 
         <div class="col-7">
@@ -49,7 +56,10 @@ export default function Artist(props) {
                     ${props.diedOn}`}
           </p>
           <p>Nationality: {props.nationality}</p>
-          <p>{props.bio}</p>
+          <p>
+            {props.bio ||
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
+          </p>
           <p>
             <a href={props.wikiUrl} target="_blank">
               View wiki page...

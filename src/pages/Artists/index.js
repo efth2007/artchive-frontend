@@ -214,6 +214,7 @@ export default function Artists() {
                 <Artist
                   key={a.id}
                   id={a.id}
+                  imageUrl={a.imageUrl}
                   knownAs={a.knownAs}
                   firstName={a.firstName}
                   lastName={a.lastName}

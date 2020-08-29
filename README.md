@@ -1,5 +1,7 @@
 ## The ar(t)chive
 
+Checkout the deployed version [here](https://distracted-gates-a9f5e6.netlify.app/)
+
 ### Purpose
 
 This project was made to help me exercise my freshly learned coding skills and apply them in a meaningful and useful way.
@@ -32,10 +34,10 @@ The main function of the ar(t)chive app is to showcase a list of important artis
 
 [Datamodel](https://dbdiagram.io/d/5f15b5a174ca2227330d95de)
 
-[Frontend repository](https://github.com/efth2007/artchive-frontend)
-
-[Backend repository](https://github.com/efth2007/artchive-backend)
-
 [Taskboard](https://github.com/efth2007/artchive-frontend/projects/1)
 
 [Wireframe](https://wireframepro.mockflow.com/view/M9af9a3f9764db424a3c6d7f6e33bd9bb1595326380785#/page/ceab4dc4215d40c2b87ae4bcff725fb1)
+
+[Frontend repository](https://github.com/efth2007/artchive-frontend)
+
+[Backend repository](https://github.com/efth2007/artchive-backend)

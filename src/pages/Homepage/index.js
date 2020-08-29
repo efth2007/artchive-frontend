@@ -50,18 +50,9 @@ export default function Homepage() {
             <h1>Welcome to Ar(t)chive</h1>
           </div>
           <h4 class="mt-3">
-            <i> Some clever subtitle goes here...</i>
+            <i> Discover your new favorite artist</i>
           </h4>
-          <p>
-            {" "}
-            Lorem ipsum dolor sit amet, consectetur a dipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
+          <p> </p>
         </div>
       </div>
       <div class="container">
@@ -72,7 +63,14 @@ export default function Homepage() {
               <div class="card-body">
                 <div class="row">
                   <div class="col-4">
-                    <img src={featuredArtist.imageUrl} alt="new" height="300" />
+                    <img
+                      src={
+                        featuredArtist.imageUrl ||
+                        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                      }
+                      alt="new"
+                      height="300"
+                    />
                   </div>
                   <div class="col-7">
                     <Link to={`/artists/${featuredArtist.id}`}>

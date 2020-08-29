@@ -29,7 +29,7 @@ export default function Museums() {
               bootstrapURLKeys={{
                 key: "AIzaSyCq7OIj4xIJv_2CFRJkcfA38sIaFep0LUQ",
               }}
-              defaultCenter={{ lat: 0, lng: 0 }}
+              defaultCenter={{ lat: 21, lng: 0 }}
               defaultZoom={1}
             >
               {!museums

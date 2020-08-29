@@ -87,7 +87,7 @@ export default function ArtistDetails() {
             />
             {!token ? null : (
               <Button onClick={faveButtonClicked}>
-                {isFavorite ? "Is favorite!" : "Add to favorites"}
+                {isFavorite ? "Added to favorites!" : "Add to favorites"}
               </Button>
             )}
           </div>

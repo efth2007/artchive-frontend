@@ -1,5 +1,11 @@
 import { apiUrl, DEFAULT_PAGINATION_LIMIT } from "../../config/constants";
 import axios from "axios";
+import {
+  appLoading,
+  appDoneLoading,
+  showMessageWithTimeout,
+  setMessage,
+} from "../appState/actions";
 
 export const FETCH_ARTISTS_SUCCESS = "FETCH_ARTISTS_SUCCESS";
 
@@ -10,6 +16,8 @@ export const fetchArtistsSuccess = (artists) => ({
 
 export const fetchArtists = () => {
   return async (dispatch, getState) => {
+    // dispatch(appLoading());
+
     const artistsCount = getState().artists.length;
     const response = await axios.get(
       // `${apiUrl}/artists?limit=${DEFAULT_PAGINATION_LIMIT}&offset=${artistsCount}`
@@ -18,6 +26,7 @@ export const fetchArtists = () => {
 
     console.log("Your artists:", response.data);
     dispatch(fetchArtistsSuccess(response.data.allArtists));
+    // dispatch(appDoneLoading());
   };
 };
 
