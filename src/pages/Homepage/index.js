@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchFeaturedArtist } from "../../store/featuredArtist/actions";
 import { selectFeaturedArtist } from "../../store/featuredArtist/selectors";
+import Loading from "../../components/Loading";
 
 //import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
@@ -57,10 +58,13 @@ export default function Homepage() {
       </div>
       <div class="container">
         <div class="card mb-5 text-left border rounded">
-          {!featuredArtist ? null : (
-            <div>
-              <div class="card-header">Featured artist of the day: </div>
-              <div class="card-body">
+          <div>
+            <div class="card-header">Featured artist of the day: </div>
+
+            <div class="card-body text-center">
+              {!featuredArtist ? (
+                <Loading />
+              ) : (
                 <div class="row">
                   <div class="col-4">
                     <img
@@ -68,11 +72,11 @@ export default function Homepage() {
                         featuredArtist.imageUrl ||
                         "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
                       }
+                      class="img-fluid"
                       alt="new"
-                      height="300"
                     />
                   </div>
-                  <div class="col-7">
+                  <div class="col-7 text-left">
                     <Link to={`/artists/${featuredArtist.id}`}>
                       {" "}
                       {featuredArtist.knownAs ? (
@@ -120,9 +124,9 @@ export default function Homepage() {
                     </p>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
-          )}
+          </div>
         </div>
       </div>
     </div>

@@ -16,17 +16,21 @@ export const fetchArtistsSuccess = (artists) => ({
 
 export const fetchArtists = () => {
   return async (dispatch, getState) => {
-    // dispatch(appLoading());
+    //dispatch(appLoading());
 
-    const artistsCount = getState().artists.length;
-    const response = await axios.get(
-      // `${apiUrl}/artists?limit=${DEFAULT_PAGINATION_LIMIT}&offset=${artistsCount}`
-      `${apiUrl}/artists`
-    );
+    try {
+      const artistsCount = getState().artists.length;
+      const response = await axios.get(
+        // `${apiUrl}/artists?limit=${DEFAULT_PAGINATION_LIMIT}&offset=${artistsCount}`
+        `${apiUrl}/artists`
+      );
 
-    console.log("Your artists:", response.data);
-    dispatch(fetchArtistsSuccess(response.data.allArtists));
-    // dispatch(appDoneLoading());
+      console.log("Your artists:", response.data);
+      dispatch(fetchArtistsSuccess(response.data.allArtists));
+      // dispatch(appDoneLoading());
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 

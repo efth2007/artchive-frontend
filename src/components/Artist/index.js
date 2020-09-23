@@ -8,15 +8,17 @@ export default function Artist(props) {
     <div className="bg-light mb-4 text-left border rounded">
       <div className="card-body p-4">
         <div class="row">
-          <div class="col-1"></div>
-          <img
-            src={
-              props.imageUrl ||
-              "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-            }
-            alt="new"
-            height="150"
-          />
+          <div class="col-3">
+            <img
+              src={
+                props.imageUrl ||
+                "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+              }
+              class="img-fluid"
+              alt="new"
+              height="150"
+            />
+          </div>
           <div class="col-7 ml-4">
             <Link to={`/artists/${props.id}`}>
               {props.knownAs ? (

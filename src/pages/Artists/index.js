@@ -10,6 +10,7 @@ import {
   selectToken,
   selectFavorites,
 } from "../../store/user/selectors";
+import Loading from "../../components/Loading";
 import Artist from "../../components/Artist";
 import { Link } from "react-router-dom";
 
@@ -207,22 +208,24 @@ export default function Artists() {
       </Jumbotron>
 
       <Container>
-        {!displayedArtists
-          ? null
-          : displayedArtists.map((a) => {
-              return (
-                <Artist
-                  key={a.id}
-                  id={a.id}
-                  imageUrl={a.imageUrl}
-                  knownAs={a.knownAs}
-                  firstName={a.firstName}
-                  lastName={a.lastName}
-                  bornOn={a.bornOn}
-                  diedOn={a.diedOn}
-                />
-              );
-            })}
+        {!displayedArtists ? (
+          <div>WAIT!!!</div>
+        ) : (
+          displayedArtists.map((a) => {
+            return (
+              <Artist
+                key={a.id}
+                id={a.id}
+                imageUrl={a.imageUrl}
+                knownAs={a.knownAs}
+                firstName={a.firstName}
+                lastName={a.lastName}
+                bornOn={a.bornOn}
+                diedOn={a.diedOn}
+              />
+            );
+          })
+        )}
       </Container>
     </>
   );
